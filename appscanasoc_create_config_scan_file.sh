@@ -5,4 +5,4 @@ echo "antes do array $diffFilesList"
 readarray -t diffFiles <<< "$diffFilesList"
 echo "File1: ${diffFiles[0]}"
 echo "File2: ${diffFiles[1]}"
-for i in ${!diffFiles=[@]}; do sed -i "s|\(</Target>\)|<Include>${diffFiles[$i]}</Include>\1|" appscan-config.xml; done
+for i in ${diffFiles[@]}; do sed -i "s|\(</Target>\)|<Include>$i}</Include>\1|" appscan-config.xml; done
