@@ -3,7 +3,6 @@ echo "<?xml version="1.0" encoding="UTF-8" standalone="no"?><Configuration enabl
 diffFilesList=$(git diff --name-only HEAD HEAD~1)
 echo "antes do array $diffFilesList"
 readarray -t diffFiles <<< "$diffFilesList"
-echo "depois do array $diffFiles"
-echo "File1: $diffFiles[0]"
-echo "File2: $diffFiles[1]"
+echo "File1: ${diffFiles[0]}"
+echo "File2: ${diffFiles[1]}"
 for i in ${!diffFiles=[@]}; do sed -i "s|\(</Target>\)|<Include>${diffFiles=[$i]}</Include>\1|" appscan-config.xml; done
