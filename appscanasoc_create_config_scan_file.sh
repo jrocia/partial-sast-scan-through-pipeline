@@ -3,4 +3,3 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Configuration
 diffFilesList=$(git diff --name-only HEAD HEAD~1)
 readarray -t diffFiles <<< "$diffFilesList"
 for i in ${diffFiles[@]}; do sed -i "s|\(</Target>\)|<Include>$i</Include>\1|" appscan-config.xml; done
-cat appscan-config.xml
